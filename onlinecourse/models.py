@@ -108,6 +108,7 @@ class Question(models.Model):
 
     #lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    question_text = models.TextField()
     content = models.CharField(max_length=200,default="") 
     grade = models.IntegerField(default=50)
 
