@@ -55,9 +55,10 @@
     <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#exam">Start Exam</button>
     <div id="exam" class="collapse">
         <form id="questionform" action="{% url 'onlinecourse:submit' course.id %}" method="POST">
+            
             {% for question in course.question_set.all %}
             <div class="card mt-1">
-                <div class="card-header"><h5>{{ question.text }}</h5></div>
+                <div class="card-header"><h5>{{ question.content }}</h5></div>
                     {% csrf_token %}
                     <div class="form-group">
                         {% for choice in question.choice_set.all %}
@@ -65,7 +66,7 @@
                             <label class="form-check-label">
                                 <input type="checkbox" name="choice_{{choice.id}}"
                                        class="form-check-input" id="{{choice.id}}"
-                                       value="{{choice.id}}">{{ choice.text }} <!--changed from content to text for q and choice; choice.choice_text-->
+                                       value="{{choice.id}}">{{ choice.content }} <!--or choice.text? and question.text?-->
                             </label>
                         </div>
                         {% endfor %}
